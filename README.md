@@ -5,10 +5,13 @@ Requirement: Ubuntu 12.04 LTS
 How to
 ------
 git clone https://github.com/chardy/deployscripts.git
+
 cd deployscripts
+
 ./install essentials
 
 follow by: (eg. db)
+
 ./install database
 
 Please check the recipes content first, conf function might need to be changed
