@@ -1,0 +1,18 @@
+#!/bin/bash
+source "$ROOT_PATH/recipes/essentials"
+source "$LIB_PATH/ruby.sh"
+source "$LIB_PATH/nodejs.sh"
+source "$LIB_PATH/mysql.sh"
+
+function install_app {
+  load_essentials_conf
+
+  install_mysql_client
+  install_ruby
+  install_java
+  install_nodejs
+  create_gemrc
+  update_rubygems
+  install_bundler
+
+}

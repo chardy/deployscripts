@@ -1,0 +1,26 @@
+#!/bin/bash
+source "$ROOT_PATH/recipes/essentials"
+source "$LIB_PATH/mysql.sh"
+source "$LIB_PATH/postgresql.sh"
+
+function load_db_config {
+  DATABASE_TYPE="mysql"
+  DATABASE_PASSWORD="mydbs3cr3t"
+}
+
+function install_database {
+  load_db_config
+
+  case "$DATABASE_TYPE" in
+    mysql)
+      install_mysql $DATABASE_PASSWORD 
+      ;;
+    pgsql)
+      install_postgresql $DATABASE_PASSWORD
+      ;;
+    *)
+      install_mysql $DATABASE_PASSWORD
+      install_postgresql $DATABASE_PASSWORD
+      ;;
+  esac
+}

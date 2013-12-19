@@ -1,0 +1,28 @@
+#!/bin/bash
+source "$ROOT_PATH/recipes/essentials"
+source "$LIB_PATH/nginx.sh"
+source "$LIB_PATH/haproxy.sh"
+
+function load_lb_conf
+{
+  LB_TYPE="nginx"
+}
+
+function install_lb {
+  load_essentials_conf
+  load_lb_conf
+
+  case "$LB_TYPE" in
+    nginx)
+      install_nginx
+      ;;
+    haproxy)
+      install_haproxy
+      ;;
+    *)
+      log "install_lb() requires to specify load balancer type: nginx or haproxy"
+      ;;
+  esac
+
+
+}

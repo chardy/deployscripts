@@ -1,0 +1,22 @@
+#!/bin/bash
+source "$ROOT_PATH/recipes/essentials"
+source "$LIB_PATH/nosql.sh"
+
+function load_nosql_config {
+  DATABASE_TYPE="mongodb"
+  DATABASE_PASSWORD="m0ng0pa55w0rd"
+  # TODO: mongo password is not yet implemented 
+}
+
+function install_nosql {
+  load_nosql_config
+
+  case "$DATABASE_TYPE" in
+    mongodb)
+      install_mongodb 
+      ;;
+    *)
+      log "install_nosql() requires to specify load balancer type: mongo or ..."
+      ;;
+  esac
+}
