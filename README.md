@@ -4,7 +4,7 @@ Requirement: Ubuntu 12.04 LTS
 
 How to
 ------
-git clone 
+git clone https://github.com/chardy/deployscripts.git
 cd deployscripts
 ./install essentials
 
