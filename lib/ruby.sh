@@ -9,6 +9,8 @@ function install_ruby
   log "install_ruby: Installing standard ruby..."
   aptitude -y install ruby1.9.1 ruby1.9.1-dev rubygems1.9.1 irb1.9.1 ri1.9.1 rdoc1.9.1 libopenssl-ruby1.9.1 libssl-dev zlib1g-dev libpcre3-dev
   create_gemrc
+  install_bundler
+  install_gems
 }
 
 function install_ruby_ng
@@ -22,7 +24,7 @@ function install_ruby_ng
   apt-get -y install ruby1.9.3 ruby-switch
   ruby-switch --set ruby1.9.1
   create_gemrc
-  update_rubygems
+  # update_rubygems
   install_bundler
   install_gems
 }
