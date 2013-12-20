@@ -8,7 +8,7 @@ function install_app {
   load_essentials_conf
 
   install_mysql_client
-  install_ruby
+  install_ruby_ng
   install_java
   install_nodejs
   create_gemrc
