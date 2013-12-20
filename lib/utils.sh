@@ -24,9 +24,9 @@ function ask {
 
 function upgrade_system {
   log "upgrade_system() Upgrading System..."
-  apt-get update
-  apt-get -y install aptitude
-  apt-get -y full-upgrade
+  aptitude update
+  aptitude -y install aptitude
+  aptitude -y full-upgrade
 }
 
 function make_sure_no_apache {
