@@ -16,10 +16,10 @@ function install_ruby_ng
   log "install_ruby_ng: Installing Ruby Next Generation (Brightbox)"
   # http://brightbox.com/docs/ruby/ubuntu/
 
-  apt-get install python-software-properties
+  apt-get -y install python-software-properties
   apt-add-repository ppa:brightbox/ruby-ng
   apt-get update
-  apt-get install ruby1.9.3 ruby-switch
+  apt-get -y install ruby1.9.3 ruby-switch
   ruby-switch --set ruby1.9.1
   create_gemrc
   update_rubygems
