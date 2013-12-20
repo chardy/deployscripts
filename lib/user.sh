@@ -4,7 +4,7 @@ function create_deploy_user {
   #$1 - USERNAME
   #$2 - PASSWORD
   #$3 - SSHKEY
-  add_user $1 $2 "users,sudo,www"
+  add_user $1 $2 "users,sudo"
   add_ssh_key $1 "$3"
 }
 
