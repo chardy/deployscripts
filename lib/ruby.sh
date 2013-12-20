@@ -17,7 +17,7 @@ function install_ruby_ng
   # http://brightbox.com/docs/ruby/ubuntu/
 
   apt-get -y install python-software-properties
-  apt-add-repository ppa:brightbox/ruby-ng
+  apt-add-repository -y ppa:brightbox/ruby-ng
   apt-get update
   apt-get -y install ruby1.9.3 ruby-switch
   ruby-switch --set ruby1.9.1
