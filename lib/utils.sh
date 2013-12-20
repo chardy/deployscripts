@@ -31,8 +31,8 @@ function upgrade_system {
 
 function make_sure_no_apache {
   log "make_sure_no_apache() Need to make sure apache is not running, some Cloud provider install apache by default..."
-  aptitude -y purge apache2 apache2-utils apache2.2-bin apache2-common
-  aptitude autoremove --purge
+  apt-get -y purge apache2 apache2-utils apache2.2-bin apache2-common
+  apt-get autoremove --purge
 }
 
 function install_essentials {
