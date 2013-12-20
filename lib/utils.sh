@@ -41,7 +41,6 @@ function install_basics {
   log "install_essentials: Installing Essentials..."
   apt-get -y install autoconf automake bash-completion bison build-essential curl dnsutils debconf-utils freetds-bin freetds-dev git-core less libc6-dev libcurl3 libcurl3-gnutls libcurl4-openssl-dev libpcre3-dev libreadline-dev libreadline6 libreadline6-dev libsqlite3-0 libsqlite3-dev libssl-dev libsvn-dev libtool libxml2 libxml2-dev libxslt1-dev libyaml-dev locate libncurses5-dev openssh-server openssl rsync sqlite-doc sqlite3 subversion subversion-tools sudo tdsodbc unzip vim wget whois zlib1g zlib1g-dev
 
-  additional_installs
 }
 
 function update_locale_en_US_UTF_8 {
