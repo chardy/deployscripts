@@ -11,8 +11,6 @@ function install_app {
   install_ruby_ng
   install_java
   install_nodejs
-  create_gemrc
-  update_rubygems
   install_bundler
-
+  install_gems
 }
