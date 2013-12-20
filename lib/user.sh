@@ -16,7 +16,7 @@ function add_user {
   #$1 - USERNAME
   #$2 - PASSWORD
   #$3 - GROUPS
-  log "add_user() Adding user $1..."
+  log "add_user: Adding user $1..."
   useradd --create-home --shell "/bin/bash" --user-group --groups "$3" "$1"
   echo "$1:$2" | chpasswd
 }

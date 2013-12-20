@@ -6,14 +6,14 @@
 
 function install_ruby
 {
-  log "install_ruby() Installing standard ruby..."
+  log "install_ruby: Installing standard ruby..."
   aptitude -y install ruby1.9.1 ruby1.9.1-dev rubygems1.9.1 irb1.9.1 ri1.9.1 rdoc1.9.1 libopenssl-ruby1.9.1 libssl-dev zlib1g-dev libpcre3-dev
   create_gemrc
 }
 
 function install_ruby_ng
 {
-  log "install_ruby_ng() Installing Ruby Next Generation (Brightbox)"
+  log "install_ruby_ng: Installing Ruby Next Generation (Brightbox)"
   # http://brightbox.com/docs/ruby/ubuntu/
 
   apt-get install python-software-properties
@@ -28,7 +28,7 @@ function install_ruby_ng
 }
 
 function create_gemrc {
-  log "create_gemrc() Setting up .gemrc file"
+  log "create_gemrc: Setting up .gemrc file"
   cat > ~/.gemrc << EOF
 verbose: true
 bulk_treshold: 1000
@@ -44,17 +44,17 @@ EOF
 }
 
 function update_rubygems {
-  log "update_rubygems()"
+  log "update_rubygems:"
   gem update --system
 }
 
 function install_bundler {
-  log "install_bundler() Installing bundler..."
+  log "install_bundler: Installing bundler..."
   gem install bundler
 }
 
 function install_gems {
-  log "install_gems() installing additional essential gems..."
+  log "install_gems: installing additional essential gems..."
   gem install rails capistrano rmagick curb tzinfo unicorn rack sinatra mysql2 pg nokogiri
 }
 

@@ -5,7 +5,7 @@
 #################################
 
 function set_basic_security {
-  log "set_basic_security() Setting up basic security..."
+  log "set_basic_security: Setting up basic security..."
   install_ufw
   basic_ufw_setup
   sshd_permit_root_login No
@@ -15,12 +15,12 @@ function set_basic_security {
 }
 
 function install_ufw {
-  log "install_ufw() installing firewall"
+  log "install_ufw: installing firewall"
   aptitude -y install ufw
 }
 
 function basic_ufw_setup {
-  log "basic_ufw_setup()"
+  log "basic_ufw_setup:"
   # see https://help.ubuntu.com/community/UFW
   ufw logging on
   ufw default deny
@@ -31,7 +31,7 @@ function basic_ufw_setup {
 }
 
 function security_logcheck {
-  log "security_logcheck()"
+  log "security_logcheck:"
   aptitude -y install logcheck logcheck-database
 }
 

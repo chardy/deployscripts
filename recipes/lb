@@ -20,7 +20,7 @@ function install_lb {
       install_haproxy
       ;;
     *)
-      log "install_lb() requires to specify load balancer type: nginx or haproxy"
+      log "install_lb: requires to specify load balancer type: nginx or haproxy"
       ;;
   esac
 

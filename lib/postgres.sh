@@ -2,7 +2,7 @@
 
 function install_postgresql
 {
-  log "install_postgresql() Installing postgresql..."
+  log "install_postgresql: Installing postgresql..."
   apt-add-repository ppa:pitti/postgresql
   apt-get -y update
   aptitude -y install postgresql postgresql-contrib postgresql-dev postgresql-client libpq-dev
@@ -17,11 +17,11 @@ function postgresql_create_user
   # $2 - their password
   # $3 - allow user to create db?
   if [ -z "$1" ] ; then
-    echo "postgresql_create_user() requires the username as its first argument"
+    echo "postgresql_create_user: requires the username as its first argument"
     return 1;
   fi
   if [ -z "$2" ] ; then
-    echo "postgresql_create_user() requires the user password to set as the second argument"
+    echo "postgresql_create_user: requires the user password to set as the second argument"
     return 1;
   fi
   echo "CREATE ROLE $1 WITH LOGIN ENCRYPTED PASSWORD '$2';" | sudo -u postgres psql
@@ -39,11 +39,11 @@ function postgresql_grant_user
   # $2 - the database
 
   if [ -z "$1" ] ; then
-    echo "postgresql_grant_user() requires username as the first argument"
+    echo "postgresql_grant_user: requires username as the first argument"
     return 1;
   fi
   if [ -z "$2" ] ; then
-    echo "postgresql_grant_user() requires a database as the second argument"
+    echo "postgresql_grant_user: requires a database as the second argument"
     return 1;
   fi
   echo "GRANT ALL PRIVILEGES ON DATABASE $2 TO $1 ;" | sudo -u postgres psql
@@ -55,7 +55,7 @@ function postgresql_create_database
   # $1 - the db name to create
 
   if [ -z "$1" ] ; then
-    echo "postgresql_create_database() requires the name of the database as the first argument"
+    echo "postgresql_create_database: requires the name of the database as the first argument"
     return 1;
   fi
 
@@ -65,7 +65,7 @@ function postgresql_create_database
 function backup_postgresql
 {
   if [ -z "$1" ] ; then
-    echo "backup_postgresql() requires the backup directory as its first argument"
+    echo "backup_postgresql: requires the backup directory as its first argument"
     return 1;
   fi
 
@@ -84,7 +84,7 @@ function backup_postgresql
 function restore_postgresql
 {
   if [ -z "$1" ] ; then
-    echo "restore_postgresql() requires the backup directory as its first argument"
+    echo "restore_postgresql: requires the backup directory as its first argument"
     return 1;
   fi
 

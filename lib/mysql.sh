@@ -12,9 +12,9 @@ function install_mysql {
   # install percona, choice of better MySQL that works well in SSD
   # $1 - the mysql root password
 
-  log "install_mysql() Installing MySQL..."
+  log "install_mysql: Installing MySQL..."
   if [ ! -n "$1" ]; then
-    log "mysql_install() requires the root password as its first argument"
+    log "mysql_install: requires the root password as its first argument"
     return 1;
   fi
 
@@ -38,7 +38,7 @@ function install_mysql {
 }
 
 function install_mysql_client {
-  log "install_mysql_client() Installing MySQL client..."
+  log "install_mysql_client: Installing MySQL client..."
 
   export DEBIAN_FRONTEND=noninteractive
   apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A
@@ -56,11 +56,11 @@ function create_mysql_database {
   # $1 - the mysql root password
   # $2 - the db name to create
   if [ ! -n "$1" ]; then
-    log "mysql_create_database() requires the root pass as its first argument"
+    log "mysql_create_database: requires the root pass as its first argument"
     return 1;
   fi
   if [ ! -n "$2" ]; then
-    log "mysql_create_database() requires the name of the database as the second argument"
+    log "mysql_create_database: requires the name of the database as the second argument"
     return 1;
   fi
   log "Creating database $2..."
@@ -72,15 +72,15 @@ function create_mysql_user {
   # $2 - the user to create
   # $3 - their password
   if [ ! -n "$1" ]; then
-    log "mysql_create_user() requires the root pass as its first argument"
+    log "mysql_create_user: requires the root pass as its first argument"
     return 1;
   fi
   if [ ! -n "$2" ]; then
-    log "mysql_create_user() requires username as the second argument"
+    log "mysql_create_user: requires username as the second argument"
     return 1;
   fi
   if [ ! -n "$3" ]; then
-    log "mysql_create_user() requires a password as the third argument"
+    log "mysql_create_user: requires a password as the third argument"
     return 1;
   fi
   log "Creating MySQL user $2..."
@@ -92,15 +92,15 @@ function grant_mysql_user {
   # $2 - the user to bestow privileges
   # $3 - the database
   if [ ! -n "$1" ]; then
-    log "mysql_grant_user() requires the root pass as its first argument"
+    log "mysql_grant_user: requires the root pass as its first argument"
     return 1;
   fi
   if [ ! -n "$2" ]; then
-    log "mysql_grant_user() requires username as the second argument"
+    log "mysql_grant_user: requires username as the second argument"
     return 1;
   fi
   if [ ! -n "$3" ]; then
-    log "mysql_grant_user() requires a database as the third argument"
+    log "mysql_grant_user: requires a database as the third argument"
     return 1;
   fi
   log "Granting MySQL user $2 all privileges to $3 database..."
@@ -111,7 +111,7 @@ function grant_mysql_user {
 function backup_mysql
 {
   if [ ! -n "$1" ]; then
-    log "backup_mysql() requires the database user as its first argument"
+    log "backup_mysql: requires the database user as its first argument"
     return 1;
   fi
   if [ ! -n "$2" ]; then
@@ -119,7 +119,7 @@ function backup_mysql
     return 1;
   fi
   if [ ! -n "$3" ]; then
-    log "backup_mysql() requires the output file path as its third argument"
+    log "backup_mysql: requires the output file path as its third argument"
     return 1;
   fi
   local USER="$1"
@@ -148,7 +148,7 @@ function backup_mysql
 function restore_mysql
 {
   if [ ! -n "$1" ]; then
-    log "restore_mysql() requires the database user as its first argument"
+    log "restore_mysql: requires the database user as its first argument"
     return 1;
   fi
   if [ ! -n "$2" ]; then
@@ -156,7 +156,7 @@ function restore_mysql
     return 1;
   fi
   if [ ! -n "$3" ]; then
-    log "restore_mysql() requires the backup directory as its third argument"
+    log "restore_mysql: requires the backup directory as its third argument"
     return 1;
   fi
 

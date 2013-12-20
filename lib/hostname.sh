@@ -8,11 +8,11 @@ function set_hostname
 {
   # $1 - HOSTNAME
   if [ ! -n "$1" ]; then
-    log "set_hostname() requires the hostname as its first argument"
+    log "set_hostname: requires the hostname as its first argument"
     return 1;
   fi
 
-  log "set_hostname() Setting hostname to $1..."
+  log "set_hostname: Setting hostname to $1..."
   echo "$1" > /etc/hostname
   echo "$1" > /proc/sys/kernel/hostname
 

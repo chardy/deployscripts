@@ -16,7 +16,7 @@ function install_nosql {
       install_mongodb 
       ;;
     *)
-      log "install_nosql() requires to specify load balancer type: mongo or ..."
+      log "install_nosql: requires to specify load balancer type: mongo or ..."
       ;;
   esac
 }
