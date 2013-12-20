@@ -18,7 +18,7 @@ function install_essentials {
 
   upgrade_system
   make_sure_no_apache
-  install_essentials
+  install_basics
   set_hostname $HOST_NAME
   update_locale_en_US_UTF_8
   create_deploy_user $USER_NAME $USER_PASSWORD "$USER_SSH_KEY"
