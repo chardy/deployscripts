@@ -8,9 +8,9 @@ function set_basic_security {
   log "set_basic_security: Setting up basic security..."
   install_ufw
   basic_ufw_setup
-  sshd_permit_root_login No
-  sshd_password_authentication No
-  sshd_pub_key_authentication Yes
+  sshd_permit_root_login no
+  sshd_password_authentication no
+  sshd_pub_key_authentication yes
   /etc/init.d/ssh restart
 }
 
@@ -38,7 +38,7 @@ function security_logcheck {
 function sshd_edit_value {
     # $1 - param name
     # $2 - Yes/No
-    VALUE=`lower $2`
+    VALUE=$2
     if [ "$VALUE" == "yes" ] || [ "$VALUE" == "no" ]; then
         sed -i "s/^#*\($1\).*/\1 $VALUE/" /etc/ssh/sshd_config
     fi
