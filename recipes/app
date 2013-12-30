@@ -8,9 +8,10 @@ function install_app {
   load_essentials_conf
 
   install_mysql_client
-  install_ruby_ng
+  install_ruby_rbenv
   install_java
   install_nodejs
-  install_bundler
-  install_gems
+  install_rbenv_bundler
+  install_rbenv_gems
+  install_monit
 }

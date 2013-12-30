@@ -25,6 +25,23 @@ function install_ruby_ng
   # update_rubygems
 }
 
+function install_ruby_rbenv
+{
+  log "install_ruby_rbenv: Installing rbenv ruby"
+  su - $USER_NAME
+  curl -L https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
+  echo 'export RBENV_ROOT="${HOME}/.rbenv"' >> ~/.bashrc
+  echo 'if [ -d "${RBENV_ROOT}" ]; then' >> ~/.bashrc
+  echo '  export PATH="${RBENV_ROOT}/bin:${PATH}"' >> ~/.bashrc
+  echo '  eval "$(rbenv init -)"' >> ~/.bashrc
+  echo 'fi' >> ~/.bashrc
+  source ~/.bashrc
+  rbenv bootstrap-ubuntu-12-04
+  rbenv install 1.9.3-p484
+  rbenv global 1.9.3-p484
+  exit
+}
+
 function create_gemrc {
   log "create_gemrc: Setting up .gemrc file"
   cat > ~/.gemrc << EOF
@@ -51,8 +68,25 @@ function install_bundler {
   gem install bundler
 }
 
+function install_rbenv_bundler {
+  su - app
+  log "install_bundler: Installing bundler..."
+  gem install bundler
+  exit
+}
+
 function install_gems {
   log "install_gems: installing additional essential gems..."
   gem install rails capistrano rmagick curb tzinfo unicorn rack sinatra mysql2 pg nokogiri
 }
 
+function install_rbenv_gems {
+  log "install_gems: installing additional essential gems for rbenv build..."
+  su - app
+  gem install rails capistrano rmagick curb tzinfo unicorn rack sinatra mysql2 pg nokogiri
+  exit
+}
+
+function install_monit {
+  apt-get -y install monit
+}

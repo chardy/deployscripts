@@ -27,6 +27,7 @@ function basic_ufw_setup {
   ufw allow ssh
   ufw allow http
   ufw allow https
+  ufw allow ntp
   ufw enable
 }
 

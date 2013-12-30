@@ -19,6 +19,9 @@ function install_essentials {
   upgrade_system
   make_sure_no_apache
   install_basics
+  install_ntp
+  install_java
+  update_locale_en_US_UTF_8
   additional_installs
   set_hostname $HOST_NAME
   update_locale_en_US_UTF_8

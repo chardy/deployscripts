@@ -52,6 +52,11 @@ function update_locale_en_US_UTF_8 {
   dpkg-reconfigure -f noninteractive tzdata
 }
 
+function install_ntp {
+  apt-get install ntp
+  service ntp restart
+}
+
 function install_java {
   log "install_java: Installing Java..."
   apt-get -y install openjdk-6-jdk
