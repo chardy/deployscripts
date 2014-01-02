@@ -36,7 +36,7 @@ function get_rdns_for_ip
 {
   # calls host on an IP address and returns its reverse dns
   if [ ! -e /usr/bin/host ]; then
-    aptitude -y install dnsutils > /dev/null
+    sudo aptitude -y install dnsutils > /dev/null
   fi
   echo $(host $1 | awk '/pointer/ {print $5}' | sed 's/\.$//')
 }

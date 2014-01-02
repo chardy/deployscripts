@@ -39,7 +39,7 @@ function make_sure_no_apache {
 
 function install_basics {
   log "install_essentials: Installing Essentials..."
-  apt-get -y install autoconf automake bash-completion bison build-essential curl dnsutils debconf-utils freetds-bin freetds-dev git-core less libc6-dev libcurl3 libcurl3-gnutls libcurl4-openssl-dev libpcre3-dev libreadline-dev libreadline6 libreadline6-dev libsqlite3-0 libsqlite3-dev libssl-dev libsvn-dev libtool libxml2 libxml2-dev libxslt1-dev libyaml-dev locate libncurses5-dev openssh-server openssl rsync sqlite-doc sqlite3 subversion subversion-tools sudo tdsodbc unzip vim wget whois zlib1g zlib1g-dev
+  apt-get -y install autoconf automake bash-completion bison build-essential curl dnsutils debconf-utils freetds-bin freetds-dev git-core less libc6-dev libcurl3 libcurl3-gnutls libcurl4-openssl-dev libpcre3-dev libreadline-dev libreadline6 libreadline6-dev libsqlite3-0 libsqlite3-dev libssl-dev libsvn-dev libtool libxml2 libxml2-dev libxslt1-dev libyaml-dev locate libncurses5-dev openssh-server openssl rsync sqlite-doc sqlite3 subversion subversion-tools sudo tdsodbc unzip vim wget whois zlib1g zlib1g-dev 
 
 }
 
@@ -64,5 +64,5 @@ function install_java {
 
 function additional_installs {
   log "additional_installs: Installing additionals: "
-  apt-get -y install libcroco-tools graphicsmagick libgraphicsmagick1-dev libmagickwand-dev libmagickcore-dev libmagickcore4-extra libgraphviz-dev libgvc5 imagemagick webp
+  apt-get -y install libcroco-tools graphicsmagick libgraphicsmagick1-dev libmagickwand-dev libmagickcore-dev libmagickcore4-extra libgraphviz-dev libgvc5 imagemagick webp mongodb-clients
 }
