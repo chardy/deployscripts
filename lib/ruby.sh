@@ -30,17 +30,27 @@ function install_ruby_rbenv
   log "install_ruby_rbenv: Installing rbenv ruby"
   
   su - $USER_NAME -c "curl -L https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash"
+  USER_HOME=$(user_home "$USER_NAME")
+
   su - $USER_NAME -c 'cat >> ~/.bashrc << EOF
-export RBENV_ROOT="${HOME}/.rbenv"
-if [ -d "${RBENV_ROOT}" ]; then
-  export PATH="${RBENV_ROOT}/bin:${PATH}"
+export RBENV_ROOT="$USER_HOME/.rbenv"
+if [ -d "$USER_HOME/.rbenv" ]; then
+  export PATH="$USER_HOME/.rbenv/bin:${PATH}"
   eval "$(rbenv init -)"
 fi
 EOF'
-  su - $USER_NAME -c "source ~/.bashrc"
-  su - $USER_NAME -c "rbenv bootstrap-ubuntu-12-04"
-  su - $USER_NAME -c "rbenv install 1.9.3-p484"
-  su - $USER_NAME -c "rbenv global 1.9.3-p484"
+
+#   su - $USER_NAME -c 'cat >> ~/.bashrc << EOF
+# export RBENV_ROOT="${HOME}/.rbenv"
+# if [ -d "${RBENV_ROOT}" ]; then
+#   export PATH="${RBENV_ROOT}/bin:${PATH}"
+#   eval "$(rbenv init -)"
+# fi
+# EOF'
+  # sudo -u $USER_NAME "source ~/.bashrc"
+  sudo -u $USER_NAME "rbenv bootstrap-ubuntu-12-04"
+  sudo -u $USER_NAME "rbenv install 1.9.3-p484"
+  sudo -u $USER_NAME "rbenv global 1.9.3-p484"
 }
 
 function create_gemrc {
