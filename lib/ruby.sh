@@ -30,14 +30,13 @@ function install_ruby_rbenv
   log "install_ruby_rbenv: Installing rbenv ruby"
   
   su - $USER_NAME -c "curl -L https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash"
-  MYSTRING << EOF
+  su - $USER_NAME -c 'cat >> ~/.bashrc << EOF
 export RBENV_ROOT="${HOME}/.rbenv"
 if [ -d "${RBENV_ROOT}" ]; then
   export PATH="${RBENV_ROOT}/bin:${PATH}"
   eval "$(rbenv init -)"
 fi
-EOF
-  su - $USER_NAME -c "echo $MYSTRING >> ~/.bashrc"
+EOF'
   su - $USER_NAME -c "source ~/.bashrc"
   su - $USER_NAME -c "rbenv bootstrap-ubuntu-12-04"
   su - $USER_NAME -c "rbenv install 1.9.3-p484"
