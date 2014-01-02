@@ -30,7 +30,7 @@ function install_ruby_rbenv
   log "install_ruby_rbenv: Installing rbenv ruby"
   
   su - $USER_NAME -c "curl -L https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash"
-  su - $USER_NAME -c "echo 'export RBENV_ROOT="/home/$USERNAME/.rbenv"' >> ~/.bashrc"
+  su - $USER_NAME -c "echo 'export RBENV_ROOT="${HOME}/.rbenv"' >> ~/.bashrc"
   su - $USER_NAME -c "echo 'if [ -d "${RBENV_ROOT}" ]; then' >> ~/.bashrc"
   su - $USER_NAME -c "echo '  export PATH="${RBENV_ROOT}/bin:${PATH}"' >> ~/.bashrc"
   su - $USER_NAME -c "echo '  eval "$(rbenv init -)"' >> ~/.bashrc"
