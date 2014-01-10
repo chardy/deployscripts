@@ -16,6 +16,7 @@ function set_basic_security {
 
 function install_ufw {
   log "install_ufw: installing firewall"
+  apt-get -y install aptitude
   aptitude -y install ufw
 }
 
