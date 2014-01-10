@@ -1,0 +1,6 @@
+#!/bin/bash
+source "$ROOT_PATH/recipes/essentials"
+
+function install_security {
+  set_basic_security
+}
