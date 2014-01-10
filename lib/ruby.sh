@@ -40,14 +40,15 @@ if [ -d "$USER_HOME/.rbenv" ]; then
 fi
 EOF'
 
-#   su - $USER_NAME -c 'cat >> ~/.bashrc << EOF
-# export RBENV_ROOT="${HOME}/.rbenv"
-# if [ -d "${RBENV_ROOT}" ]; then
-#   export PATH="${RBENV_ROOT}/bin:${PATH}"
-#   eval "$(rbenv init -)"
-# fi
-# EOF'
+  # su - $USER_NAME -c 'cat >> ~/.bashrc << EOF
+  # export RBENV_ROOT="${HOME}/.rbenv"
+  # if [ -d "${RBENV_ROOT}" ]; then
+  #   export PATH="${RBENV_ROOT}/bin:${PATH}"
+  #   eval "$(rbenv init -)"
+  # fi
+  # EOF'
   # sudo -u $USER_NAME "source ~/.bashrc"
+  # su - app -c "rbenv bootstrap-ubuntu-12-04"
   sudo -u $USER_NAME "rbenv bootstrap-ubuntu-12-04"
   sudo -u $USER_NAME "rbenv install 1.9.3-p484"
   sudo -u $USER_NAME "rbenv global 1.9.3-p484"
