@@ -64,5 +64,19 @@ function install_java {
 
 function additional_installs {
   log "additional_installs: Installing additionals: "
-  apt-get -y install libcroco-tools graphicsmagick libgraphicsmagick1-dev libmagickwand-dev libmagickcore-dev libmagickcore4-extra libgraphviz-dev libgvc5 imagemagick webp mongodb-clients
+  apt-get -y install libcroco-tools libmagickwand-dev libmagickcore-dev libmagickcore4-extra libgraphviz-dev libgvc5 imagemagick webp mongodb-clients 
+  # graphicsmagick libgraphicsmagick1-dev
+}
+
+function install_gm {
+  log "install_gm: Installing graphic magick 1.3.18 "
+  cd ~
+  mkdir -p src
+  cd ~/src
+  wget http://jaist.dl.sourceforge.net/project/graphicsmagick/graphicsmagick/1.3.18/GraphicsMagick-1.3.18.tar.gz
+  tar zxf GraphicsMagick-1.3.18.tar.gz
+  cd GraphicsMagick-1.3.18
+  ./configure
+  make
+  make install
 }
