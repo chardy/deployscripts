@@ -34,43 +34,54 @@ function basic_ufw_setup {
 }
 
 function basic_iptables_setup {
-  # make sure iptables records created is not deleted from server for each reboot
-  apt-get install iptables-persistent
-  service iptables-persistent start
+  cat > /etc/iptables.firewall.rules << EOF
+*filter
 
-  #  Allow all loopback (lo0) traffic and drop all traffic to 127/8 that doesn't use lo0
-  iptables -A INPUT -i lo -j ACCEPT
-  iptables -A INPUT -d 127.0.0.0/8 -j REJECT
+#  Allow all loopback (lo0) traffic and drop all traffic to 127/8 that doesn't use lo0
+-A INPUT -i lo -j ACCEPT
+-A INPUT ! -i lo -d 127.0.0.0/8 -j REJECT
 
-  #  Accept all established inbound connections
-  iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+#  Accept all established inbound connections
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 
-  #  Allow all outbound traffic - you can modify this to only allow certain traffic
-  iptables -A OUTPUT -j ACCEPT
+#  Allow all outbound traffic - you can modify this to only allow certain traffic
+-A OUTPUT -j ACCEPT
 
-  #  Allow HTTP and HTTPS connections from anywhere (the normal ports for websites and SSL).
-  iptables -A INPUT -p tcp --dport 80 -j ACCEPT
-  iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+#  Allow HTTP and HTTPS connections from anywhere (the normal ports for websites and SSL).
+-A INPUT -p tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp --dport 443 -j ACCEPT
 
-  # Allow ntp client 
-  iptables -A OUTPUT -p udp --dport 123 -j ACCEPT
-  iptables -A INPUT -p udp --sport 123 -j ACCEPT
+#  Allow ports for testing
+# -A INPUT -p tcp --dport 8080:8090 -j ACCEPT
 
-  #  Allow SSH connections
-  #
-  #  The -dport number should be the same port number you set in sshd_config
-  #
-  iptables -A INPUT -p tcp -m state --state NEW --dport 22 -j ACCEPT
+#  Allow SSH connections
+#  The -dport number should be the same port number you set in sshd_config
+-A INPUT -p tcp -m state --state NEW --dport 22 -j ACCEPT
 
-  #  Allow ping
-  iptables -A INPUT -p icmp -j ACCEPT
+#  Allow ping
+-A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
 
-  #  Log iptables denied calls
-  iptables -A INPUT -m limit --limit 5/min -j LOG --log-prefix "iptables denied: " --log-level 7
+#  Log iptables denied calls
+-A INPUT -m limit --limit 5/min -j LOG --log-prefix "iptables denied: " --log-level 7
 
-  #  Drop all other inbound - default deny unless explicitly allowed policy
-  iptables -A INPUT -j DROP
-  iptables -A FORWARD -j DROP
+#  Reject all other inbound - default deny unless explicitly allowed policy
+-A INPUT -j REJECT
+-A FORWARD -j REJECT
+
+COMMIT
+
+EOF
+
+  iptables-restore < /etc/iptables.firewall.rules
+
+  cat > /etc/network/if-pre-up.d/firewall << EOF
+#!/bin/sh
+/sbin/iptables-restore < /etc/iptables.firewall.rules
+
+EOF
+
+  chmod +x /etc/network/if-pre-up.d/firewall
+
 }
 
 function security_logcheck {
