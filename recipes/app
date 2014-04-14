@@ -13,4 +13,5 @@ function install_app {
   install_java
   install_nodejs
   install_monit
+  # install_memcache
 }
