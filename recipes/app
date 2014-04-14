@@ -3,6 +3,7 @@ source "$ROOT_PATH/recipes/essentials"
 source "$LIB_PATH/ruby.sh"
 source "$LIB_PATH/nodejs.sh"
 source "$LIB_PATH/mysql.sh"
+source "$LIB_PATH/memcache.sh"
 
 function install_app {
   load_essentials_conf
