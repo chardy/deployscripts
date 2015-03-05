@@ -64,7 +64,7 @@ function install_java {
 
 function additional_installs {
   log "additional_installs: Installing additionals: "
-  apt-get -y install libcroco-tools libmagickwand-dev libmagickcore-dev libmagickcore4-extra libgraphviz-dev libgvc5 imagemagick webp mongodb-clients 
+  apt-get -y install libcroco-tools libmagickwand-dev libmagickcore-dev libmagickcore5-extra libgraphviz-dev libgvc6 imagemagick webp mongodb-clients 
   # graphicsmagick libgraphicsmagick1-dev
 }
 
