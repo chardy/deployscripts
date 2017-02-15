@@ -1,6 +1,6 @@
 DeployScript is a set of bash shell scripts to make the installation easy for applications deployment.
 
-Requirement: Ubuntu 12.04 LTS
+Requirement: Ubuntu 16.04 LTS
 
 How to
 ------

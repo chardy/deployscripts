@@ -19,20 +19,14 @@ function install_mysql {
   fi
 
   export DEBIAN_FRONTEND=noninteractive
-  apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A
+  apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8507EFA5
 
-  # echo "deb http://repo.percona.com/apt precise main" >> /etc/apt/sources.list
-  # echo "deb-src http://repo.percona.com/apt precise main" >> /etc/apt/sources.list
+  echo "deb http://repo.percona.com/apt xenial main" >> /etc/apt/sources.list
+  echo "deb-src http://repo.percona.com/apt xenial main" >> /etc/apt/sources.list
 
-  echo "deb http://repo.percona.com/apt trusty main" >> /etc/apt/sources.list
-  echo "deb-src http://repo.percona.com/apt trusty main" >> /etc/apt/sources.list
+  apt-get -o Acquire::ForceIPv4=true update
 
-  apt-get update
-
-  # echo "percona-server-server-5.5 percona-server-server-5.5/root_password password $1" | debconf-set-selections
-  # echo "percona-server-server-5.5 percona-server-server-5.5/root_password_again password $1" | debconf-set-selections
-
-  apt-get -y install percona-server-server-5.5 percona-server-client-5.5 libmysqlclient-dev
+  apt-get -y --allow-unauthenticated install percona-server-server-5.6 percona-server-client-5.6 libmysqlclient-dev
 
   mysqladmin -u root password $1
 
@@ -49,9 +43,9 @@ function install_mysql_client {
   echo "deb http://repo.percona.com/apt trusty main" >> /etc/apt/sources.list
   echo "deb-src http://repo.percona.com/apt trusty main" >> /etc/apt/sources.list
 
-  apt-get update
+  apt-get -o Acquire::ForceIPv4=true update
 
-  apt-get -y install percona-server-client-5.5 libmysqlclient-dev
+  apt-get -y install percona-server-client-5.6 libmysqlclient-dev
 
 }
 

@@ -3,8 +3,8 @@
 function install_postgresql
 {
   log "install_postgresql: Installing postgresql..."
-  apt-add-repository ppa:pitti/postgresql
-  apt-get -y update
+  # apt-add-repository ppa:pitti/postgresql
+  apt-get -o Acquire::ForceIPv4=true update
   aptitude -y install postgresql postgresql-contrib postgresql-dev postgresql-client libpq-dev
   pg_conf=$(find /etc/ -name "pg_hba.conf" | head -n 1)
   sed -i -e  's/^.*local.*all.*all.*$/local\tall\tall\tmd5/g'  $pg_conf

@@ -24,17 +24,15 @@ function ask {
 
 function upgrade_system {
   log "upgrade_system: Upgrading System..."
-  apt-get update
-  aptitude -y install aptitude
+  apt-get -o Acquire::ForceIPv4=true update
+  apt-get -y install aptitude
   aptitude -y full-upgrade
-
 }
 
 function make_sure_no_apache {
   log "make_sure_no_apache: Need to make sure apache is not running, some Cloud provider install apache by default..."
   apt-get -y purge apache2 apache2-utils apache2.2-bin apache2-common
   apt-get autoremove --purge
-
 }
 
 function install_basics {
@@ -46,7 +44,7 @@ function install_basics {
 function update_locale_en_US_UTF_8 {
   log "update_locale_en_US_UTF_8: Updating locale to en_US.UTF-8..."
   locale-gen en_US.UTF-8
-  dpkg-reconfigure locales
+  dpkg-reconfigure locales -f noninteractive
   update-locale LANG=en_US.UTF-8
   echo "UTC" > /etc/timezone
   dpkg-reconfigure -f noninteractive tzdata
@@ -59,24 +57,10 @@ function install_ntp {
 
 function install_java {
   log "install_java: Installing Java..."
-  apt-get -y install openjdk-6-jdk
+  apt-get -y install default-jdk
 }
 
 function additional_installs {
   log "additional_installs: Installing additionals: "
-  apt-get -y install libcroco-tools libmagickwand-dev libmagickcore-dev libmagickcore5-extra libgraphviz-dev libgvc6 imagemagick webp mongodb-clients 
-  # graphicsmagick libgraphicsmagick1-dev
-}
-
-function install_gm {
-  log "install_gm: Installing graphic magick 1.3.18 "
-  cd ~
-  mkdir -p src
-  cd ~/src
-  wget http://jaist.dl.sourceforge.net/project/graphicsmagick/graphicsmagick/1.3.18/GraphicsMagick-1.3.18.tar.gz
-  tar zxf GraphicsMagick-1.3.18.tar.gz
-  cd GraphicsMagick-1.3.18
-  ./configure
-  make
-  make install
+  apt-get -y install libcroco-tools libmagickwand-dev libmagickcore-dev libmagickcore-extra libgraphviz-dev libgvc6 imagemagick webp mongodb-clients graphicsmagick libgraphicsmagick1-dev
 }

@@ -17,13 +17,11 @@ function install_essentials {
   load_essentials_conf
 
   upgrade_system
-  make_sure_no_apache
   install_basics
   install_ntp
   install_java
   update_locale_en_US_UTF_8
   additional_installs
-  install_gm
   set_hostname $HOST_NAME
   update_locale_en_US_UTF_8
   create_deploy_user $USER_NAME $USER_PASSWORD "$USER_SSH_KEY"
